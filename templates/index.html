@@ -1,0 +1,123 @@
+{% extends "layout.html" %}
+{% block title %}The Sanatorium - Culture's Refuge{% endblock %}
+
+{% block content %}
+
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Sana's Auditorium</h1>
+        <h2>The culture's refuge for creators, dreamers, and doers.</h2>
+    </div>
+</section>
+
+<section class="page-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>More Than a Studio</h2>
+        </div>
+        <p class="text-center" style="max-width: 800px; margin-left: auto; margin-right: auto; font-size: 1.1rem;">
+            The Sanatorium is more than a studio; it's an ecosystem. We are a multi-concept creative space in Nairobi, 
+            housing a co-working area, a styling and event studio, a curated boutique, and a flower shop. 
+            It's a "Sana's Auditorium" – a refuge for culture.
+        </p>
+        <div class="text-center cta-bar">
+            <a href="{{ url_for('about') }}" class="btn btn-secondary">Learn Our Story</a>
+        </div>
+    </div>
+</section>
+
+<section class="page-section alt-bg">
+    <div class="container">
+        <div class="section-header">
+            <h2>The Boutique</h2>
+            <p>Curated Flowers, Clothes, Art, &amp; Accessories</p>
+        </div>
+        
+        <div class="grid-preview">
+            {% if products %}
+                {% for product in products %}
+                <div class="product-card">
+                    <img src="{{ product.image_url or url_for('static', filename='images/placeholder.jpg') }}" alt="{{ product.name }}">
+                    <div class="product-card-content">
+                        <h3>{{ product.name }}</h3>
+                        <p class="price">${{ "%.2f"|format(product.price) }}</p>
+                        <p>{{ product.description|truncate(80) }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-center">Our boutique is currently curating new items. Check back soon!</p>
+            {% endif %}
+        </div>
+        
+        <div class="text-center cta-bar">
+            <a href="{{ url_for('products') }}" class="btn btn-primary">See All Products</a>
+        </div>
+    </div>
+</section>
+
+<section class="page-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Spaces & Services</h2>
+        </div>
+        <div class="grid-preview">
+            <div class="service-card">
+                <img src="{{ url_for('static', filename='images/studio_b.jpg') }}" alt="Co-Working Space">
+                <div class="service-card-content">
+                    <h3>Co-Working Space</h3>
+                    <p>Join a community of creators in our inspiring, shared workspace.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" alt="Subletting & Retail">
+                <div class="service-card-content">
+                    <h3>Subletting & Retail</h3>
+                    <p>Showcase your brand in our curated boutique with flexible shelf space.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="{{ url_for('static', filename='images/studio_a.jpg') }}" alt="Event Studios">
+                <div class="service-card-content">
+                    <h3>Event Studios (A & B)</h3>
+                    <p>Versatile, naturally-lit studios for photoshoots, workshops, and events.</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center cta-bar">
+            <a href="{{ url_for('services') }}" class="btn btn-secondary">See All Services</a>
+        </div>
+    </div>
+</section>
+
+<section class="page-section alt-bg">
+    <div class="container">
+        <div class="section-header">
+            <h2>Flexible Plans</h2>
+            <p>Access for an hour, a day, or a year. We fit your creative flow.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card"><h4>Hourly</h4><p>On-demand access</p></div>
+            <div class="pricing-card"><h4>Half-Day</h4><p>4-hour block</p></div>
+            <div class="pricing-card"><h4>Full-Day</h4><p>8-hour block</p></div>
+            <div class="pricing-card"><h4>Weekly</h4><p>Dedicated access</p></div>
+            <div class="pricing-card"><h4>Monthly</h4><p>Your second home</p></div>
+            <div class="pricing-card"><h4>Weekends</h4><p>Fri-Sun package</p></div>
+            <div class="pricing-card"><h4>Annually</h4><p>The ultimate commitment</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="page-section text-center" style="border-bottom: none;">
+    <div class="container">
+        <h2 style="font-size: 2.5rem;">Ready to Create?</h2>
+        <p style="font-size: 1.2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Reserve your moment at The Sanatorium and bring your vision to life.
+        </p>
+        <div class="cta-bar">
+            <a href="{{ url_for('booking') }}" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1rem;">Book Your Session</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

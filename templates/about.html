@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block title %}About Us - The Sanatorium{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-header" style="margin-top: 2rem;">
+        <h1>About The Sanatorium</h1>
+    </div>
+
+    <div style="max-width: 800px; margin: 0 auto; background: var(--white); padding: 2.5rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+        <p style="font-size: 1.1rem;"><strong>The Sanatorium is more than a studio; it's an ecosystem.</strong></p>
+        <p>Founded on the principle of "Sana's Auditorium," we are a multi-concept creative space in Nairobi designed as a refuge for the culture. Our space is a vibrant hub for creators, dreamers, and doers, providing the tools and environment needed to thrive.</p>
+        
+        <img src="{{ url_for('static', filename='images/studio_a.jpg') }}" alt="Studio A interior" style="margin: 1.5rem 0; border-radius: 8px;">
+
+        <h3>Our Concepts</h3>
+        <p>We house several concepts under one roof:</p>
+        <ul style="list-style: disc; margin-left: 1.5rem; margin-bottom: 1.5rem;">
+            <li><strong>Co-Working Space:</strong> An inspiring environment for freelancers and small teams.</li>
+            <li><strong>Event & Styling Studios:</strong> Two versatile, naturally-lit studios (Studio A and Studio B) for photoshoots, workshops, and private events.</li>
+            <li><strong>The Boutique:</strong> A curated retail space featuring local designers, artists, and florists.</li>
+            <li><strong>Subletting Program:</strong> A retail-as-a-service model for emerging brands.</li>
+        </ul>
+        
+        <h3 id="community" style="margin-top: 2rem; color: var(--accent-auburn);">Wasanii Wa Sanaa</h3>
+        <p>At our core is the "Wasanii Wa Sanaa" (Artists of Art) community. This is our commitment to fostering collaboration, providing resources, and celebrating the artists who define Nairobi's cultural landscape. We are a platform for your work and a partner in your growth.</p>
+        
+        <img src="{{ url_for('static', filename='images/studio_b.jpg') }}" alt="Studio B interior" style="margin-top: 1.5rem; border-radius: 8px;">
+    </div>
+</div>
+{% endblock %}

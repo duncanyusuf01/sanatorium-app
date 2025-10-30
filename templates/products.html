@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Boutique - The Sanatorium{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-header" style="margin-top: 2rem;">
+        <h1>The Boutique</h1>
+        <p>A curated collection from Nairobi's finest creators.</p>
+    </div>
+
+    <nav class="filter-nav">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="flowers">Flowers</button>
+        <button class="filter-btn" data-filter="clothes">Clothes</button>
+        <button class="filter-btn" data-filter="art">Art</button>
+        <button class="filter-btn" data-filter="accessories">Accessories</button>
+    </nav>
+
+    <div id="product-gallery">
+        {% if products %}
+            {% for product in products %}
+            <div class="product-item product-card" data-category="{{ product.category.lower() }}">
+                <img src="{{ product.image_url or url_for('static', filename='images/placeholder.jpg') }}" alt="{{ product.name }}">
+                <div class="product-card-content">
+                    <h3>{{ product.name }}</h3>
+                    <p class="price">${{ "%.2f"|format(product.price) }}</p>
+                    <p>{{ product.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center">Our boutique is empty at the moment. Please check back soon!</p>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

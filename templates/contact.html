@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block title %}Contact Us - The Sanatorium{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-header" style="margin-top: 2rem;">
+        <h1>Get In Touch</h1>
+        <p>We'd love to hear from you. Visit us, call us, or send a message.</p>
+    </div>
+
+    <div class="form-container">
+        <h3>Contact Information</h3>
+        <p style="font-size: 1.1rem; line-height: 1.8;">
+            <strong>Address:</strong><br>
+            123 Creative Lane, Kilimani<br>
+            Nairobi, Kenya
+            <br><br>
+            <strong>Phone:</strong><br>
+            +254 700 123 456
+            <br><br>
+            <strong>Email:</strong><br>
+            hello@sanatorium.co.ke
+        </p>
+        
+        <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(47, 79, 79, 0.1);">
+        
+        <h3>Send Us a Message</h3>
+        <p>For general inquiries, please use the form below. For specific bookings, please use the <a href="{{ url_for('booking') }}" style="font-weight: 700; text-decoration: underline;">"Reserve Your Moment"</a> page.</p>
+        
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="contact_name">Name</label>
+                <input type="text" id="contact_name" name="contact_name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="contact_email">Email</label>
+                <input type="email" id="contact_email" name="contact_email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="contact_message">Message</label>
+                <textarea id="contact_message" name="contact_message" class="form-control" rows="5" required></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

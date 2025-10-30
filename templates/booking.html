@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block title %}Reserve Your Moment - The Sanatorium{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-header" style="margin-top: 2rem;">
+        <h1>Reserve Your Moment</h1>
+        <p>Book a studio, co-working desk, or consultation. We'll confirm availability shortly.</p>
+    </div>
+
+    <div class="form-container">
+        <form action="{{ url_for('booking') }}" method="POST" id="booking-form">
+            
+            <div class="form-group">
+                <label for="full_name">Full Name</label>
+                <input type="text" id="full_name" name="full_name" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone_number">Phone Number</label>
+                <input type="tel" id="phone_number" name="phone_number" class="form-control" required placeholder="+254 7...">
+            </div>
+
+            <div class="form-group">
+                <label for="service_id">Select Service</label>
+                <select id="service_id" name="service_id" class="form-control" required>
+                    <option value="" disabled selected>-- Choose a service --</option>
+                    {% for service in services %}
+                        <option value="{{ service.id }}" {% if request.args.get('service_id')|int == service.id %}selected{% endif %}>
+                            {{ service.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="plan_type">Select Plan</label>
+                <select id="plan_type" name="plan_type" class="form-control" required>
+                    <option value="hourly">Hourly</option>
+                    <option value="halfday">Half-Day (4 hours)</option>
+                    <option value="fullday">Full-Day (8 hours)</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="weekends">Weekends</option>
+                    <option value="annually">Annually</option>
+                    <option value="inquiry">Other (Please specify in message)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="requested_date">Preferred Date</label>
+                <input type="date" id="requested_date" name="requested_date" class="form-control" required min="{{ "now"|datetimeformat("%Y-%m-%d") }}">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message (Optional)</label>
+                <textarea id="message" name="message" class="form-control" rows="4" placeholder="Tell us more about your event, photoshoot, or booking needs..."></textarea>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit Request</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

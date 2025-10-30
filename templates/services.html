@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Our Services - The Sanatorium{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-header" style="margin-top: 2rem;">
+        <h1>Our Services</h1>
+        <p>Flexible solutions for Nairobi's creative community.</p>
+    </div>
+
+    {% if services %}
+        {% for service in services %}
+        <div class="service-detail">
+            <h3>{{ service.name }}</h3>
+            <p>{{ service.description }}</p>
+            <p><strong>Starting Price:</strong> ${{ "%.2f"|format(service.base_price) }}</p>
+            <a href="{{ url_for('booking', service_id=service.id) }}" class="btn btn-primary">Book This Service</a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-center">Our service details are being updated. Please check back soon!</p>
+    {% endif %}
+
+    <div class="service-detail">
+        <h3>Styling Offers</h3>
+        <p>We offer in-house styling services for your photoshoots, events, or personal wardrobe, utilizing products from our boutique and our network of local designers.</p>
+        <a href="{{ url_for('booking') }}" class="btn btn-primary">Book a Consultation</a>
+    </div>
+    
+    <div class="service-detail">
+        <h3>Workshops & Events</h3>
+        <p>We host regular workshops on topics from floral design and brand building to photography and art. We also host community markets and pop-up events.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-secondary">Inquire About Events</a>
+    </div>
+
+</div>
+{% endblock %}

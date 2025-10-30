@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}The Sanatorium{% endblock %}</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/wasanii_logo.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <div class="preloader">
+        <img src="{{ url_for('static', filename='images/wasanii_logo.png') }}" alt="Wasanii Wa Sanaa Logo Loading">
+    </div>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="{{ url_for('index') }}" class="logo-text">SANATORIUM.</a>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{{ url_for('about') }}">About Us</a></li>
+                    <li><a href="{{ url_for('services') }}">Services</a></li>
+                    <li><a href="{{ url_for('products') }}">Boutique</a></li>
+                    <li>
+                        <a href="{{ url_for('about') }}#community" class="nav-logo-link" title="Wasanii Wa Sanaa Community">
+                            <img src="{{ url_for('static', filename='images/wasanii_logo.png') }}" alt="Wasanii Wa Sanaa">
+                        </a>
+                    </li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                </ul>
+                <a href="{{ url_for('booking') }}" class="btn btn-primary">Reserve Your Moment</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <ul class="flash-messages">
+                {% for category, message in messages %}
+                <li class="flash {{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; {{ current_year }} The Sanatorium. All rights reserved.</p>            <p>Sana's Auditorium - The Culture's Refuge in Nairobi.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>
